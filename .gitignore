@@ -3,3 +3,6 @@
 main
 
 tmp/*
+
+node_modules
+.angular
