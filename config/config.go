@@ -20,6 +20,8 @@ type Config struct {
 	PG_SSL_MODE string
 
 	HMAC_KEY string
+
+	AAS_URL string
 }
 
 var App = initConfig()
@@ -39,6 +41,7 @@ func initConfig() Config {
 		PG_SCHEMA:   getEnv("PG_SCHEMA", "my-app"),
 		PG_SSL_MODE: getEnv("PG_SSL_MODE", "disable"),
 		HMAC_KEY:    getEnv("HMAC_KEY", "HMAC_KEY"),
+		AAS_URL:     getEnv("AAS_URL", "https://localhost:8000/aas/api/v1"),
 	}
 
 	log.Printf("debugging server config: %+v", config)

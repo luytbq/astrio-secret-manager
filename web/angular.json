@@ -8,14 +8,15 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "asm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "baseHref": "/asm/",
             "outputPath": {
-              "base": "dist/asm"
+              "base": "dist/asm",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
