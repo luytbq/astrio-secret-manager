@@ -6,4 +6,4 @@ tmp/*
 
 node_modules
 .angular
-./web/dist
+web/dist
