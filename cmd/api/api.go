@@ -3,6 +3,7 @@ package api
 import (
 	"database/sql"
 	"encoding/json"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/luytbq/astrio-secret-manager/pkg/common"
@@ -42,6 +43,7 @@ func (server *Server) Run() {
 }
 
 func authMiddleware(c *gin.Context) {
+	log.Printf("authMiddleware")
 	code, resBytes, err := common.RequestAAS("GET", "/users/infos", nil, &c.Request.Header)
 
 	if err != nil {

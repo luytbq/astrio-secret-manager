@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { provideRouter, RouterOutlet, withDebugTracing, withPreloading } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
-import { APP_ROUTES } from './app.route';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
-import { AuthInterceptor } from './services/http-interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   standalone: true,
@@ -30,10 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.getInfos().subscribe(user => {
-      console.log('user', user);
-
       if (!!user) {
-        console.log('logged in');
       } else {
         window.location.href = this.aasWebUrl + "/login?back=" + encodeURIComponent(window.location.href);
       }

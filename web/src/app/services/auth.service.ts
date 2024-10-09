@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  asmServiceUrl = environment.asm.service_url;
+  private asmServiceUrl = environment.asm.service_url;
 
   constructor(
     private http: HttpClient,
