@@ -16,7 +16,7 @@ export class SecretService {
     error: null,
     params: {
       page: 0,
-      page_size: 20,
+      pageSize: 20,
       keyword: ''
     },
     secretGroups: [],
@@ -38,10 +38,12 @@ export class SecretService {
     this.search$.pipe(
       startWith({
         page: 0,
-        page_size: 20,
+        pageSize: 20,
         keyword: ''
       }),
-      switchMap(params => this.getSecrets(params)),
+      switchMap(params => this.getSecrets(params)
+        .pipe(catchError((err) => this.handleError(err)))
+      ),
       takeUntilDestroyed()
     ).subscribe(searchReponse => {
       this.state.update((state) => ({
@@ -55,13 +57,13 @@ export class SecretService {
     let httpParams  = new HttpParams()
       .set('keyword', params.keyword)
       .set('page', params.page)
-      .set('page_size', params.page_size);
+      .set('pageSize', params.pageSize);
     return this.http.get(this.asmServiceUrl+"/secrets", {observe: 'response', params: httpParams}).pipe(
       map(res => res.body as SearchResponse),
     );
   }
   
-  private handleError(err: any) {
+  private handleError(err: any): Observable<SearchResponse> {
     this.state.update((state) => ({ ...state, error: err }));
     return EMPTY;
   }
@@ -78,7 +80,7 @@ export interface State {
 
 export interface SearchParams {
   page: number,
-  page_size: number,
+  pageSize: number,
   keyword: string
 }
 

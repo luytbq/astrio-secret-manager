@@ -29,7 +29,7 @@ export class SecretListComponent implements OnInit{
     this.secretService.search$.next({
       keyword: this.searchForm.value.keyword || '',
       page: this.searchForm.value.page || 0,
-      page_size: this.searchForm.value.pageSize || 2,
+      pageSize: this.searchForm.value.pageSize || 2,
     });
   }
 

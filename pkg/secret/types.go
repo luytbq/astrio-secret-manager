@@ -33,7 +33,7 @@ type GetSecretsParams struct {
 	UserID   uint64 `form:"-"`
 	Keyword  string `form:"keyword"`
 	Page     int    `form:"page"`
-	PageSize int    `form:"page_size"`
+	PageSize int    `form:"pageSize"`
 }
 
 type GetSecretsResponse struct {
